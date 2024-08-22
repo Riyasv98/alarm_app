@@ -89,9 +89,10 @@ class _AlarmEditScreenState extends State<AlarmEditScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Current weather info",style: TextStyle(
-                      fontWeight: FontWeight.bold
-                    ),),
+                    child: Text(
+                      "Current weather info",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                   controller.isFetchingWeather.value
                       ? Padding(
@@ -99,43 +100,44 @@ class _AlarmEditScreenState extends State<AlarmEditScreen> {
                           child: const CircularProgressIndicator(),
                         )
                       : Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Column(
-                                                                        mainAxisAlignment: MainAxisAlignment.start,
-                                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                                        children: [
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
                                       Text(weatherModel.name ?? "NA"),
                                       Text(weatherModel.country ?? "NA"),
                                       Text(weatherModel.region ?? "NA"),
-                                                                        ],
-                                                                      ),
-                                    )),
-
+                                    ],
+                                  ),
+                                )),
                                 Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Column(
-                                                                        mainAxisAlignment: MainAxisAlignment.start,
-                                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                                        children: [
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
                                       Text(weatherModel.timezoneId ?? "NA"),
                                       Text(weatherModel.localtime ?? "NA"),
                                       // Text(weatherModel.region??"NA"),
-                                                                        ],
-                                                                      ),
-                                    ))
+                                    ],
+                                  ),
+                                ))
                               ],
                             ),
+                          ),
                         ),
-                      ),
 
                   Padding(
                     padding: const EdgeInsets.only(top: 30.0),
@@ -145,7 +147,8 @@ class _AlarmEditScreenState extends State<AlarmEditScreen> {
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium!
-                            .copyWith(color: Colors.blueAccent.withOpacity(0.8)),
+                            .copyWith(
+                                color: Colors.blueAccent.withOpacity(0.8)),
                       ),
                     ),
                   ),

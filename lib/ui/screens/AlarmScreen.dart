@@ -17,7 +17,6 @@ class AlarmScreen extends StatefulWidget {
 }
 
 class _AlarmScreenState extends State<AlarmScreen> {
-
   late List<AlarmSettings> alarms;
 
   static StreamSubscription<AlarmSettings>? subscription;
@@ -40,51 +39,50 @@ class _AlarmScreenState extends State<AlarmScreen> {
       appBar: AppBar(
         elevation: 2,
       ),
-      body:  SafeArea(
+      body: SafeArea(
         child: Column(
           children: [
-
-
-
-              ElevatedButton(
-                onPressed: () async {
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) {
-                        return const AlarmEditScreen();
-                      },
-                    ),
-                  );
-                  loadAlarms();
-                },child: const Text("Set alarm"),),
+            ElevatedButton(
+              onPressed: () async {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const AlarmEditScreen();
+                    },
+                  ),
+                );
+                loadAlarms();
+              },
+              child: const Text("Set alarm"),
+            ),
             alarms.isNotEmpty
                 ? ListView.separated(
-              shrinkWrap: true,
-              itemCount: alarms.length,
-              separatorBuilder: (context, index) => const Divider(height: 1),
-              itemBuilder: (context, index) {
-                return AlarmTile(
-                  key: Key(alarms[index].id.toString()),
-                  title: TimeOfDay(
-                    hour: alarms[index].dateTime.hour,
-                    minute: alarms[index].dateTime.minute,
-
-                  ).format(context),
-
-                  onPressed: () => navigateToAlarmScreen(alarms[index]),
-                  onDismissed: () {
-                    Alarm.stop(alarms[index].id).then((_) => loadAlarms());
-                  },
-                );
-              },
-            )
+                    shrinkWrap: true,
+                    itemCount: alarms.length,
+                    separatorBuilder: (context, index) =>
+                        const Divider(height: 1),
+                    itemBuilder: (context, index) {
+                      return AlarmTile(
+                        key: Key(alarms[index].id.toString()),
+                        title: TimeOfDay(
+                          hour: alarms[index].dateTime.hour,
+                          minute: alarms[index].dateTime.minute,
+                        ).format(context),
+                        onPressed: () => navigateToAlarmScreen(alarms[index]),
+                        onDismissed: () {
+                          Alarm.stop(alarms[index].id)
+                              .then((_) => loadAlarms());
+                        },
+                      );
+                    },
+                  )
                 : Center(
-              child: Text(
-                'No alarms set',
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-            ),
+                    child: Text(
+                      'No alarms set',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
           ],
         ),
       ),
@@ -106,8 +104,8 @@ class _AlarmScreenState extends State<AlarmScreen> {
     );
     await Alarm.set(alarmSettings: alarmSettings);
     loadAlarms();
-
   }
+
   void loadAlarms() {
     setState(() {
       alarms = Alarm.getAlarms();
@@ -116,12 +114,10 @@ class _AlarmScreenState extends State<AlarmScreen> {
   }
 
   Future<void> navigateToRingScreen(AlarmSettings alarmSettings) async {
-
     await Navigator.push(
       context,
       MaterialPageRoute<void>(
-        builder: (context) =>
-            RingScreen(alarmSettings: alarmSettings),
+        builder: (context) => RingScreen(alarmSettings: alarmSettings),
       ),
     );
     loadAlarms();
@@ -178,5 +174,4 @@ class _AlarmScreenState extends State<AlarmScreen> {
       );
     }
   }
-
 }

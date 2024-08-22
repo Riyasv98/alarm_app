@@ -118,16 +118,18 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
-              onPressed: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return AlarmScreen();
-                  },
-                ),
-              );
-            },child: Text("Set alarm"),)
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return AlarmScreen();
+                    },
+                  ),
+                );
+              },
+              child: Text("Set alarm"),
+            )
           ],
         ),
       ),
